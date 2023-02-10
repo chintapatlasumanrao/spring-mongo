@@ -14,6 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 public class Employee {
     @Id
+    String id;
+
     @Field("employeeId")
     private String employeeId;
 

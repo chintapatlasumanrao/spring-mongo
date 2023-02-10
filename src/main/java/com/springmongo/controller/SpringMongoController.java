@@ -22,4 +22,9 @@ public class SpringMongoController {
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
+
+    @GetMapping("/employees/{employeeId}")
+    public Employee getEmployee(@PathVariable String employeeId) {
+        return employeeRepository.findByEmployeeId(employeeId);
+    }
 }
