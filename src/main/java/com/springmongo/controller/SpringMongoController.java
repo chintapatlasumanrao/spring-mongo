@@ -3,13 +3,11 @@ package com.springmongo.controller;
 import com.springmongo.model.Employee;
 import com.springmongo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/spring-mongo")
@@ -18,13 +16,22 @@ public class SpringMongoController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    // get all employees records
     @GetMapping("/employees")
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
 
+    // get specific employee record
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable String employeeId) {
         return employeeRepository.findByEmployeeId(employeeId);
+    }
+
+    // create new employee record
+    @PostMapping("employees")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createEmployee(@RequestBody Employee employee) {
+        employeeRepository.save(employee);
     }
 }
