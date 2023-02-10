@@ -36,7 +36,7 @@ public class SpringMongoController {
     }
 
     // delete new employee record
-    @DeleteMapping("employees/{employeeId}")
+    @DeleteMapping("/employees/{employeeId}")
     public void deleteEmployee(@PathVariable String employeeId) {
         employeeRepository.deleteByEmployeeId(employeeId);
     }
